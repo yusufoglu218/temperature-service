@@ -1,15 +1,12 @@
 package com.qardio.temperature.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -24,8 +21,10 @@ public class TemperatureRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "temperature is mandatory")
     private BigDecimal temperature;
 
+    @NotNull(message = "localDateTime is mandatory")
     private LocalDateTime localDateTime;
 
 }

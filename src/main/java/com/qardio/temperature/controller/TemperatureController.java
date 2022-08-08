@@ -4,6 +4,7 @@ package com.qardio.temperature.controller;
 import com.qardio.temperature.model.AggregatedTemperature;
 import com.qardio.temperature.model.FrequencyType;
 import com.qardio.temperature.model.TemperatureRecord;
+import com.qardio.temperature.model.TemperatureUnit;
 import com.qardio.temperature.service.TemperatureService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -63,8 +64,10 @@ public class TemperatureController {
     @GetMapping
     public List<AggregatedTemperature> getAggregatedTemperature(@Parameter(description = "Start date of aggregated temperature") @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDateTime,
                                                                 @Parameter(description = "End date of aggregated temperature") @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDateTime,
-                                                                @Parameter(description = "Frequency type of aggregated temperature. D:Daily, H:Hourly") @RequestParam FrequencyType frequencyType) {
-        return temperatureService.getAggregatedTemperatureByCriteria(startDateTime, endDateTime, frequencyType);
+                                                                @Parameter(description = "Frequency type of aggregated temperature. D:Daily, H:Hourly") @RequestParam FrequencyType frequencyType,
+                                                                @Parameter(description = "Sensor id") @RequestParam(required = false) String sensorId,
+                                                                @Parameter(description = "Unit of temperature. C:Celsius, F:Fahrenheit, K:Kelvin") @RequestParam TemperatureUnit unit) {
+        return temperatureService.getAggregatedTemperatureByCriteria(startDateTime, endDateTime, frequencyType, sensorId, unit);
     }
 
 }

@@ -27,9 +27,6 @@ public class TemperatureRecord {
     @NotNull(message = "temperature is mandatory")
     private BigDecimal temperature;
 
-    @NotNull(message = "unit is mandatory")
-    private TemperatureUnit unit;
-
     @NotNull(message = "localDateTime is mandatory")
     private LocalDateTime localDateTime;
 

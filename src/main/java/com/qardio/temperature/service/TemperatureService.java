@@ -3,7 +3,6 @@ package com.qardio.temperature.service;
 import com.qardio.temperature.model.AggregatedTemperature;
 import com.qardio.temperature.model.FrequencyType;
 import com.qardio.temperature.model.TemperatureRecord;
-import com.qardio.temperature.model.TemperatureUnit;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,9 +18,10 @@ public interface TemperatureService {
      * @param startDateTime start date criteria
      * @param endDateTime end date criteria
      * @param frequencyType daily or hourly
+     * @param sensorId id of sensor
      * @return list of AggregatedTemperature
      */
-    List<AggregatedTemperature> getAggregatedTemperatureByCriteria(LocalDateTime startDateTime, LocalDateTime endDateTime, FrequencyType frequencyType, String sensorId, TemperatureUnit unit);
+    List<AggregatedTemperature> getAggregatedTemperatureByCriteria(LocalDateTime startDateTime, LocalDateTime endDateTime, FrequencyType frequencyType, String sensorId);
 
 
     /**

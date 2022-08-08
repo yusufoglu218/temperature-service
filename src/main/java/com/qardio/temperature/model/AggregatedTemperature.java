@@ -10,4 +10,8 @@ public interface AggregatedTemperature {
     BigDecimal getMax();
     BigDecimal getAvg();
     String getTimeInterval();
+    void setMin(BigDecimal minValue);
+    void setMax(BigDecimal minValue);
+    void setAvg(BigDecimal minValue);
+    void setTimeInterval(String timeInterval);
 }

@@ -3,6 +3,7 @@ package com.qardio.temperature.service;
 import com.qardio.temperature.model.AggregatedTemperature;
 import com.qardio.temperature.model.FrequencyType;
 import com.qardio.temperature.model.TemperatureRecord;
+import com.qardio.temperature.model.TemperatureUnit;
 import com.qardio.temperature.repository.TemperatureRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,11 @@ public class TemperatureServiceImpl implements TemperatureService{
     }
 
     @Override
-    public List<AggregatedTemperature> getAggregatedTemperatureByCriteria(LocalDateTime startDateTime, LocalDateTime endDateTime, FrequencyType frequencyType) {
+    public List<AggregatedTemperature> getAggregatedTemperatureByCriteria(LocalDateTime startDateTime, LocalDateTime endDateTime, FrequencyType frequencyType, String sensorId, TemperatureUnit unit) {
         if(frequencyType == FrequencyType.H) {
-            return temperatureRepository.findAggregatedTemperatureHourly(startDateTime, endDateTime);
+            return temperatureRepository.findAggregatedTemperatureHourly(startDateTime, endDateTime, sensorId);
         }else if (frequencyType == FrequencyType.D){
-            return temperatureRepository.findAggregatedTemperatureDaily(startDateTime, endDateTime);
+            return temperatureRepository.findAggregatedTemperatureDaily(startDateTime, endDateTime, sensorId);
         }
         return null;
     }

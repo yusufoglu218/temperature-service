@@ -22,11 +22,12 @@ public interface TemperatureRepository extends JpaRepository<TemperatureRecord, 
             "FROM\n" +
             "    temperaturedb.temperature_record\n" +
             "WHERE\n" +
-            "   local_date_time BETWEEN :startDateTime and :endDateTime\n" +
+            "   local_date_time BETWEEN :startDateTime AND :endDateTime AND\n" +
+            "   (:sensorId is NULL OR sensor_id = :sensorId)\n" +
             "GROUP BY DATE_FORMAT(local_date_time, '%Y-%m-%d-%H')\n" +
             "ORDER BY DATE_FORMAT(local_date_time, '%Y-%m-%d-%H') ASC",
             nativeQuery = true)
-    List<AggregatedTemperature> findAggregatedTemperatureHourly(@Param("startDateTime") LocalDateTime startDateTime, @Param("endDateTime") LocalDateTime endDateTime);
+    List<AggregatedTemperature> findAggregatedTemperatureHourly(@Param("startDateTime") LocalDateTime startDateTime, @Param("endDateTime") LocalDateTime endDateTime, @Param("sensorId") String sensorId);
 
     @Query(value = "SELECT \n" +
             "    MIN(temperature) AS min,\n" +
@@ -36,10 +37,11 @@ public interface TemperatureRepository extends JpaRepository<TemperatureRecord, 
             "FROM\n" +
             "    temperaturedb.temperature_record\n" +
             "WHERE\n" +
-            "   local_date_time BETWEEN :startDateTime and :endDateTime\n" +
+            "   local_date_time BETWEEN :startDateTime AND :endDateTime AND\n" +
+            "   (:sensorId is NULL OR sensor_id = :sensorId\n" +
             "GROUP BY DATE_FORMAT(local_date_time, '%Y-%m-%d')\n" +
             "ORDER BY DATE_FORMAT(local_date_time, '%Y-%m-%d') ASC",
             nativeQuery = true)
-    List<AggregatedTemperature> findAggregatedTemperatureDaily(@Param("startDateTime") LocalDateTime startDateTime, @Param("endDateTime") LocalDateTime endDateTime);
+    List<AggregatedTemperature> findAggregatedTemperatureDaily(@Param("startDateTime") LocalDateTime startDateTime, @Param("endDateTime") LocalDateTime endDateTime, @Param("sensorId") String sensorId);
 
 }

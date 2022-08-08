@@ -21,8 +21,14 @@ public class TemperatureRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "sensor is mandatory")
+    private String sensorId;
+
     @NotNull(message = "temperature is mandatory")
     private BigDecimal temperature;
+
+    @NotNull(message = "unit is mandatory")
+    private TemperatureUnit unit;
 
     @NotNull(message = "localDateTime is mandatory")
     private LocalDateTime localDateTime;

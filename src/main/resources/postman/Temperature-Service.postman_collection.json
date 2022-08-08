@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "454035fe-e1b7-4e32-9a00-5e1082e14257",
+		"name": "Temperature-Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5964356"
+	},
+	"item": [
+		{
+			"name": "temperature/get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/temperature?startDateTime=2022-07-07T12:13:55.698&endDateTime=2022-07-09T12:13:55.698&temperatureFrequency=D",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"temperature"
+					],
+					"query": [
+						{
+							"key": "startDateTime",
+							"value": "2022-07-07T12:13:55.698"
+						},
+						{
+							"key": "endDateTime",
+							"value": "2022-07-09T12:13:55.698"
+						},
+						{
+							"key": "temperatureFrequency",
+							"value": "D"
+						},
+						{
+							"key": "pageNumber",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "pageSize",
+							"value": "3",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "temperature/save",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n{\r\n    \"temperature\": \"35.0\",\r\n    \"localDateTime\": \"2022-07-08T12:13:55.698\"\r\n},\r\n{\r\n    \"temperature\": \"18.0\",\r\n    \"localDateTime\": \"2022-07-08T12:10:55.698\"\r\n}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/temperature",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"temperature"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

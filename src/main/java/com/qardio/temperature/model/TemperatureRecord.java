@@ -1,5 +1,6 @@
 package com.qardio.temperature.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Data
+@Builder
 public class TemperatureRecord {
 
     @Id
